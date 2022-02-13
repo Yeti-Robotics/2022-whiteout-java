@@ -47,7 +47,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
     rightFalcon2.setNeutralMode(NeutralMode.Brake);
     resetEncoders();
   
-    driveMode = DriveMode.CHEEZY;
+    driveMode = DriveMode.TANK;
   }
 
   @Override
