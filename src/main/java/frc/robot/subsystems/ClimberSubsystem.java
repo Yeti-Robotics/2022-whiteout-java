@@ -67,12 +67,20 @@ public class ClimberSubsystem extends SubsystemBase {
     }
 
     public void resetEncoders(){
-        climberLeftFalcon.setSelectedSensorPosition(0);
+        climberLeftFalcon.setSelectedSensorPosition(0); 
         climberRightFalcon.setSelectedSensorPosition(0);
     }
 
     public void toggleBrake(){
-        climberBrake.toggle();
+        if (climberLeftFalcon.getMotorOutputPercent() <= -0.15 && climberLeftFalcon.getMotorOutputPercent() >= -0.25) {
+            climberLeftFalcon.set(ControlMode.PercentOutput, 0);
+            climberRightFalcon.set(ControlMode.PercentOutput, 0);
+        }
+        else {
+            climberLeftFalcon.set(ControlMode.PercentOutput, -0.25);
+            climberRightFalcon.set(ControlMode.PercentOutput, -0.25);
+        }
+        
     }
 
     public DoubleSolenoid.Value getSolenoidPos(){

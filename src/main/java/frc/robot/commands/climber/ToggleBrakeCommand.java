@@ -24,7 +24,11 @@ public class ToggleBrakeCommand extends CommandBase {
   public void execute() {}
 
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    if(!interrupted) {
+      climberSubsystem.stopClimb();
+    }
+  }
 
   @Override
   public boolean isFinished() {
