@@ -42,12 +42,12 @@ public class DrivetrainSubsystem extends SubsystemBase {
     leftFalcon1.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 0);
     rightFalcon1.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 0);
     leftFalcon1.setNeutralMode(NeutralMode.Brake);
-    leftFalcon2.setNeutralMode(NeutralMode.Brake);
+    leftFalcon2.setNeutralMode(NeutralMode.Brake); 
     rightFalcon1.setNeutralMode(NeutralMode.Brake);
     rightFalcon2.setNeutralMode(NeutralMode.Brake);
     resetEncoders();
   
-    driveMode = DriveMode.TANK;
+    driveMode = DriveMode.CHEEZY;
   }
 
   @Override

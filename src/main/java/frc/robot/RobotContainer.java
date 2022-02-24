@@ -138,6 +138,7 @@ public class RobotContainer {
       setJoystickButtonWhenPressed(driverStationJoy, 11, new ToggleShiftingCommand(shiftingGearsSubsystem));
       setJoystickButtonWhenPressed(driverStationJoy, 12, new ToggleIntakeCommand(intakeSubsystem));
 
+      
       // climber joystick buttons
       // setJoystickButtonWhileHeld(climberJoy, 10, new ClimberDownCommand(climberSubsystem));
       // setJoystickButtonWhileHeld(climberJoy, 11, new ClimberUpCommand(climberSubsystem));
@@ -148,12 +149,13 @@ public class RobotContainer {
         kA, kB, kBack, kBumperLeft, kBumperRight, kStart, kStickLeft, kStickRight, kX, kY (and triggers)
       */
 
-      xboxSubsystem.getController().setDPadWhenPressed(XboxDPad.Direction.UP, new ToggleShiftingCommand(shiftingGearsSubsystem));
+      setXboxButtonWhenPressed(xboxSubsystem.getController(), XboxController.Button.kLeftStick, new ToggleShiftingCommand(shiftingGearsSubsystem));
       setXboxButtonWhenPressed(xboxSubsystem.getController(), XboxController.Button.kRightStick, new ToggleIntakeCommand(intakeSubsystem));
 
       xboxSubsystem.getController().setTriggerWhileHeld(XboxTrigger.Hand.RIGHT, new AllInCommand(intakeSubsystem, hopperSubsystem, neckSubsystem));
       xboxSubsystem.getController().setTriggerWhileHeld(XboxTrigger.Hand.LEFT, new AllOutCommand(intakeSubsystem, hopperSubsystem, neckSubsystem));
       setXboxButtonWhileHeld(xboxSubsystem.getController(), XboxController.Button.kLeftBumper, new IntakeOutCommand(intakeSubsystem));
+      setXboxButtonWhileHeld(xboxSubsystem.getController(), XboxController.Button.kRightBumper, new IntakeInCommand(intakeSubsystem)); 
 
       setXboxButtonWhenPressed(xboxSubsystem.getController(), XboxController.Button.kA, new TurnToTargetPIDCommand(drivetrainSubsystem));
       setXboxButtonWhenPressed(xboxSubsystem.getController(), XboxController.Button.kB, new ToggleShooterCommand(shooterSubsystem));
