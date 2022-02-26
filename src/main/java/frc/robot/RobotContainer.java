@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.Constants.HoodConstants;
+
 import frc.robot.Constants.OIConstants;
 import frc.robot.autoRoutines.DriveForwardThenBumpFireCommandGroup;
 import frc.robot.autoRoutines.FireThreeThenForwardCommandGroup;
@@ -25,20 +25,19 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.climber.ClimberUpCommand;
 import frc.robot.commands.climber.ToggleBrakeCommand;
 import frc.robot.commands.drivetrain.TurnToTargetPIDCommand;
-import frc.robot.commands.groups.AimToShootCommandGroup;
+
 import frc.robot.commands.hood.HoodInCommand;
 import frc.robot.commands.hood.HoodOutCommand;
-import frc.robot.commands.hood.MoveHoodCommand;
-import frc.robot.commands.hood.ResetHoodEncoderCommand;
-import frc.robot.commands.hood.SetHoodAngle;
-import frc.robot.commands.hood.ToggleHoodAngleCommand;
+
+
+
+
 import frc.robot.commands.intake.IntakeInCommand;
 import frc.robot.commands.intake.IntakeOutCommand;
 import frc.robot.commands.intake.ToggleIntakeCommand;
 import frc.robot.commands.neck.NeckClearCommand;
-import frc.robot.commands.neck.NeckUpCommand;
+
 import frc.robot.commands.shifting.ToggleShiftingCommand;
-import frc.robot.commands.shooter.ShootingPIDCommand;
 import frc.robot.commands.shooter.ToggleShooterCommand;
 import frc.robot.subsystems.*;
 import frc.robot.utils.Limelight;
@@ -138,6 +137,7 @@ public class RobotContainer {
       setJoystickButtonWhenPressed(driverStationJoy, 11, new ToggleShiftingCommand(shiftingGearsSubsystem));
       setJoystickButtonWhenPressed(driverStationJoy, 12, new ToggleIntakeCommand(intakeSubsystem));
 
+      
       // climber joystick buttons
       // setJoystickButtonWhileHeld(climberJoy, 10, new ClimberDownCommand(climberSubsystem));
       // setJoystickButtonWhileHeld(climberJoy, 11, new ClimberUpCommand(climberSubsystem));
@@ -148,17 +148,22 @@ public class RobotContainer {
         kA, kB, kBack, kBumperLeft, kBumperRight, kStart, kStickLeft, kStickRight, kX, kY (and triggers)
       */
 
-      xboxSubsystem.getController().setDPadWhenPressed(XboxDPad.Direction.UP, new ToggleShiftingCommand(shiftingGearsSubsystem));
+      setXboxButtonWhenPressed(xboxSubsystem.getController(), XboxController.Button.kLeftStick, new ToggleShiftingCommand(shiftingGearsSubsystem));
       setXboxButtonWhenPressed(xboxSubsystem.getController(), XboxController.Button.kRightStick, new ToggleIntakeCommand(intakeSubsystem));
 
+      
       xboxSubsystem.getController().setTriggerWhileHeld(XboxTrigger.Hand.RIGHT, new AllInCommand(intakeSubsystem, hopperSubsystem, neckSubsystem));
       xboxSubsystem.getController().setTriggerWhileHeld(XboxTrigger.Hand.LEFT, new AllOutCommand(intakeSubsystem, hopperSubsystem, neckSubsystem));
-      setXboxButtonWhileHeld(xboxSubsystem.getController(), XboxController.Button.kLeftBumper, new IntakeOutCommand(intakeSubsystem));
+      setXboxButtonWhileHeld(xboxSubsystem.getController(), XboxController.Button.kLeftBumper, new ToggleShiftingCommand(shiftingGearsSubsystem));
+      setXboxButtonWhileHeld(xboxSubsystem.getController(), XboxController.Button.kRightBumper, new IntakeInCommand(intakeSubsystem)); 
 
       setXboxButtonWhenPressed(xboxSubsystem.getController(), XboxController.Button.kA, new TurnToTargetPIDCommand(drivetrainSubsystem));
       setXboxButtonWhenPressed(xboxSubsystem.getController(), XboxController.Button.kB, new ToggleShooterCommand(shooterSubsystem));
-      setXboxButtonWhileHeld(xboxSubsystem.getController(), XboxController.Button.kY, new HoodInCommand(hoodSubsystem));// up
-      setXboxButtonWhileHeld(xboxSubsystem.getController(), XboxController.Button.kX, new HoodOutCommand(hoodSubsystem));// down
+
+      setXboxButtonWhileHeld(xboxSubsystem.getController(), XboxController.Button.kY, new ClimberUpCommand(climberSubsystem));
+      setXboxButtonWhileHeld(xboxSubsystem.getController(), XboxController.Button.kX, new ClimberDownCommand(climberSubsystem));
+      //setXboxButtonWhileHeld(xboxSubsystem.getController(), XboxController.Button.kY, new HoodInCommand(hoodSubsystem));// up
+     // setXboxButtonWhileHeld(xboxSubsystem.getController(), XboxController.Button.kX, new HoodOutCommand(hoodSubsystem));// down
     }
   }
 
