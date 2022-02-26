@@ -59,7 +59,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
   }
 
   public void cheezyDrive(double straight, double turn) {
-    m_drive.curvatureDrive(straight, -turn, false);
+    m_drive.curvatureDrive(straight, -turn, true);
   }
 
   public void arcadeDrive(double straight, double turn) {
