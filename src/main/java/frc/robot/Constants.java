@@ -29,7 +29,7 @@ public final class Constants {
         public static final int RIGHT_FALCON_2 = 1;
 
         //shifter solenoid ports
-        public static final int[] SHIFTER_SOLENOID = {0,2};
+        public static final int[] SHIFTER_SOLENOID = {4,5};
 
         //pid drive constants
         public static final double kTurnP = 1;
@@ -51,7 +51,7 @@ public final class Constants {
         public static final int INTAKE_VICTOR = 5;
 
         //intake piston solenoid ports
-        public static final int[] INTAKE_PISTONS_SOLENOID = {1, 3};
+        public static final int[] INTAKE_PISTONS_SOLENOID = {2, 1};
 
         //intake motor speed
         public static final double ROLL_IN_SPEED = 1.0;
@@ -125,7 +125,7 @@ public final class Constants {
         //climber motor & solenoid constants
         public static final int CLIMBER_LEFT_FALCON = 3;
         public static final int CLIMBER_RIGHT_FALCON = 2;
-        public static final int[] CLIMBER_BRAKE_SOLENOID = {4, 5};
+        public static final int[] CLIMBER_BRAKE_SOLENOID = {3, 0};
 
         //climber motor speed
         public static final double CLIMBER_SPEED = 0.4;

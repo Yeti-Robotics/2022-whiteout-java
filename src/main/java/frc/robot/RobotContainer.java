@@ -154,7 +154,7 @@ public class RobotContainer {
       
       xboxSubsystem.getController().setTriggerWhileHeld(XboxTrigger.Hand.RIGHT, new AllInCommand(intakeSubsystem, hopperSubsystem, neckSubsystem));
       xboxSubsystem.getController().setTriggerWhileHeld(XboxTrigger.Hand.LEFT, new AllOutCommand(intakeSubsystem, hopperSubsystem, neckSubsystem));
-      setXboxButtonWhileHeld(xboxSubsystem.getController(), XboxController.Button.kLeftBumper, new ToggleShiftingCommand(shiftingGearsSubsystem));
+      setXboxButtonWhileHeld(xboxSubsystem.getController(), XboxController.Button.kLeftBumper, new IntakeInCommand(intakeSubsystem));
       setXboxButtonWhileHeld(xboxSubsystem.getController(), XboxController.Button.kRightBumper, new IntakeInCommand(intakeSubsystem)); 
 
       setXboxButtonWhenPressed(xboxSubsystem.getController(), XboxController.Button.kA, new TurnToTargetPIDCommand(drivetrainSubsystem));
