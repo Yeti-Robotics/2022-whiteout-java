@@ -10,9 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.*;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 import frc.robot.Constants.OIConstants;
@@ -20,10 +18,6 @@ import frc.robot.autoRoutines.DriveForwardThenBumpFireCommandGroup;
 import frc.robot.autoRoutines.FireThreeThenForwardCommandGroup;
 import frc.robot.commands.AllInCommand;
 import frc.robot.commands.AllOutCommand;
-import frc.robot.commands.climber.ClimberDownCommand;
-import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.commands.climber.ClimberUpCommand;
-import frc.robot.commands.climber.ToggleBrakeCommand;
 import frc.robot.commands.drivetrain.TurnToTargetPIDCommand;
 
 import frc.robot.commands.hood.HoodInCommand;
@@ -69,7 +63,6 @@ public class RobotContainer {
   public ShooterSubsystem shooterSubsystem;
   public HopperSubsystem hopperSubsystem;
   public HoodSubsystem hoodSubsystem;
-  public ClimberSubsystem climberSubsystem;
   public ShiftingGearsSubsystem shiftingGearsSubsystem;
   public Limelight limelight;
   private XboxSubsystem xboxSubsystem;
@@ -91,7 +84,6 @@ public class RobotContainer {
     hopperSubsystem = new HopperSubsystem();
     hoodSubsystem = new HoodSubsystem();
     shiftingGearsSubsystem = new ShiftingGearsSubsystem();
-    climberSubsystem = new ClimberSubsystem();
     xboxSubsystem = new XboxSubsystem();
     limelight = new Limelight();
 
@@ -123,15 +115,15 @@ public class RobotContainer {
       setJoystickButtonWhileHeld(driverStationJoy, 3, new NeckClearCommand(neckSubsystem)); //Change from while held to when pressed, just have to figure out the correct time value
       setJoystickButtonWhileHeld(driverStationJoy, 4, new HoodInCommand(hoodSubsystem));
 
-      setJoystickButtonWhileHeld(driverStationJoy, 5, new ClimberDownCommand(climberSubsystem));
+      setJoystickButtonWhileHeld(driverStationJoy, 5, new InstantCommand());
 
       // top row
       setJoystickButtonWhileHeld(driverStationJoy, 6, new AllOutCommand(intakeSubsystem, hopperSubsystem, neckSubsystem));
       setJoystickButtonWhileHeld(driverStationJoy, 7, new IntakeInCommand(intakeSubsystem));
-      setJoystickButtonWhenPressed(driverStationJoy, 8, new ToggleBrakeCommand(climberSubsystem));
+      setJoystickButtonWhenPressed(driverStationJoy, 8, new InstantCommand());
       setJoystickButtonWhileHeld(driverStationJoy, 9, new HoodOutCommand(hoodSubsystem));
 
-      setJoystickButtonWhileHeld(driverStationJoy, 10, new ClimberUpCommand(climberSubsystem));
+      setJoystickButtonWhileHeld(driverStationJoy, 10, new InstantCommand());
 
       //joystick buttons
       setJoystickButtonWhenPressed(driverStationJoy, 11, new ToggleShiftingCommand(shiftingGearsSubsystem));
@@ -160,8 +152,8 @@ public class RobotContainer {
       setXboxButtonWhenPressed(xboxSubsystem.getController(), XboxController.Button.kA, new TurnToTargetPIDCommand(drivetrainSubsystem));
       setXboxButtonWhenPressed(xboxSubsystem.getController(), XboxController.Button.kB, new ToggleShooterCommand(shooterSubsystem));
 
-      setXboxButtonWhileHeld(xboxSubsystem.getController(), XboxController.Button.kY, new ClimberUpCommand(climberSubsystem));
-      setXboxButtonWhileHeld(xboxSubsystem.getController(), XboxController.Button.kX, new ClimberDownCommand(climberSubsystem));
+      setXboxButtonWhileHeld(xboxSubsystem.getController(), XboxController.Button.kY, new InstantCommand());
+      setXboxButtonWhileHeld(xboxSubsystem.getController(), XboxController.Button.kX, new InstantCommand());
       //setXboxButtonWhileHeld(xboxSubsystem.getController(), XboxController.Button.kY, new HoodInCommand(hoodSubsystem));// up
      // setXboxButtonWhileHeld(xboxSubsystem.getController(), XboxController.Button.kX, new HoodOutCommand(hoodSubsystem));// down
     }
